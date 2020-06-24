@@ -1,0 +1,52 @@
+方法1.三倍空间
+class Solution {
+    public String replaceSpace(String s) {
+        int len = s.length();
+        char[] array = new char[len*3];
+        int size = 0;
+        for(int i = 0; i < len; i++){
+            char c = s.charAt(i);
+            if(c == ' '){
+                array[size++] = '%';
+                array[size++] = '2';
+                array[size++] = '0';
+            }
+            else{
+                array[size++] = c;
+            }
+        }
+        String newStr = new String(array, 0, size);
+        return newStr;
+    }
+}
+
+方法二.从后向前（需要知道字符串的总容量）
+class Solution {
+    public String replaceSpace(String s, int length) {
+        int len = s.length();
+        int count = 0;
+        for(int i = 0; i < len; i++){
+            char c = s.charAt(i);
+            if(c == ' '){
+                count++;
+            }
+        }
+        int newLen = len + count * 2;
+        if(newLen > length){
+            return;
+        }
+        int j = newLen;
+        for(int i = len; i > 0; i--){
+            char c = s.charAt(i);
+            if(c == ' '){
+                s[j--] = '0';
+                s[j--] = '2';
+                s[j--] = '%';
+            }
+            else{
+                s[j--] = s[i];
+            }
+        }
+        return s;
+    }
+}
