@@ -1,4 +1,4 @@
-方法1.三倍空间
+方法1.三倍空间（需要额外空间）
 class Solution {
     public String replaceSpace(String s) {
         int len = s.length();
