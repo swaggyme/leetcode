@@ -58,3 +58,12 @@ class Solution｛
 	
 方法四：矩阵求幂
 方法五：公式法
+class Solution {
+    public int climbStairs(int n) {
+        double sqrt5 = Math.sqrt(5);
+        double funcn = Math.pow((1+sqrt5)/2, n+1) - Math.pow((1-sqrt5)/2, n+1);
+        return (int)(funcn/sqrt5);
+    }
+}
+时间复杂度：O(logn)，pow 方法将会用去 O(logn) 的时间。
+空间复杂度：O(1)
