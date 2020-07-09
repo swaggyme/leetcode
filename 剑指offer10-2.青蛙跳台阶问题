@@ -11,3 +11,13 @@ class Solution {
         return cur;
     }
 }
+
+可以一次跳任意个台阶
+class Solution{
+    public int numWays(int n){
+        //return (int)Math.pow(2, n-1);
+        return n < 1?1:1<<(n-1); //使用移位运算速度更快
+    }
+}
+时间复杂度：o(n)
+空间复杂度：o(1)
