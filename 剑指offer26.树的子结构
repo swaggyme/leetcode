@@ -1,0 +1,36 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        if(A == null || B == null){
+            return false;
+        }
+        if((A.val == B.val) && (judge(A.left , B.left) && judge(A.right, B.right))){
+            return true;
+        }
+        return isSubStructure(A.left, B) || isSubStructure(A.right, B); 
+    }
+    private boolean judge(TreeNode m, TreeNode n){
+        if(n == null){
+            return true;
+        }
+        if(m == null){
+            return false;
+        }
+        if(m.val == n.val){
+            return judge(m.left, n.left) && judge(m.right, n.right);
+        }else{
+            return false;
+        }
+    }
+}
+复杂度分析：
+时间复杂度 O(MN)O(MN) ： 其中 M,NM,N 分别为树 AA 和 树 BB 的节点数量；先序遍历树 AA 占用 O(M)O(M) ，每次调用 recur(A, B) 判断占用 O(N)O(N) 。
+空间复杂度 O(M)O(M) ： 当树 AA 和树 BB 都退化为链表时，递归调用深度最大。当 M \leq NM≤N 时，遍历树 AA 与递归判断的总递归深度为 MM ；当 M>NM>N 时，最差情况为遍历至树 AA 叶子节点，此时总递归深度为 MM。
