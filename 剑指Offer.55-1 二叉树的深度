@@ -1,0 +1,53 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+1.后序遍历
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null) return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+}
+
+时间复杂度 O(N)O(N) ： NN 为树的节点数量，计算树的深度需要遍历所有节点。
+空间复杂度 O(N)O(N) ： 最差情况下（当树退化为链表时），递归深度可达到 NN 。
+
+2.层次遍历
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root == null) return 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int res = 0;
+        while(!queue.isEmpty()){
+            res++;
+            int n = queue.size();
+            for(int i = 0; i < n; i++){
+                TreeNode node = queue.poll();
+                if(node.left != null) queue.add(node.left);
+                if(node.right != null) queue.add(node.right);
+            }
+        }
+        return res;
+    }
+}
+时间复杂度 O(N)O(N) ： NN 为树的节点数量，计算树的深度需要遍历所有节点。
+空间复杂度 O(N)O(N) ： 最差情况下（当树平衡时），队列 queue 同时存储 N/2N/2 个节点。
+
+
+
