@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    LinkedList<List<Integer>> res = new LinkedList<>();
+    LinkedList<Integer> path = new LinkedList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        recur(root, sum);
+        return res;
+    }
+    void recur(TreeNode root, int sum){
+        if(root == null) return;
+        path.add(root.val);
+        sum -= root.val;
+        if(sum == 0 && root.left == null && root.right == null){
+            res.add(new LinkedList(path));
+        }
+        recur(root.left, sum);
+        recur(root.right, sum);
+        path.removeLast();
+    }
+}
+时间复杂度 O(N)O(N) ： NN 为二叉树的节点数，先序遍历需要遍历所有节点。
+空间复杂度 O(N)O(N) ： 最差情况下，即树退化为链表时，path 存储所有树节点，使用 O(N)O(N) 额外空间
+
