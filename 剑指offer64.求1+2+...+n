@@ -1,0 +1,8 @@
+class Solution {
+    public int sumNums(int n) {
+        boolean flag = n > 0 && (n += sumNums(n - 1)) > 0;
+        return n;
+    }
+}
+时间复杂度：O(n)。递归函数递归 n 次，每次递归中计算时间复杂度为O(1)，因此总时间复杂度为O(n)。
+空间复杂度：O(n)。递归函数的空间复杂度取决于递归调用栈的深度，这里递归函数调用栈深度为O(n)，因此空间复杂度为O(n)。
