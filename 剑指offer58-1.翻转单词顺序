@@ -1,0 +1,20 @@
+class Solution {
+    public String reverseWords(String s) {
+        s = s.trim();
+        int i = s.length() - 1, j = i;
+        StringBuilder res = new StringBuilder();
+        while(i >= 0){
+            while(i >= 0 && s.charAt(i) != ' '){
+                i--;
+            }
+            res.append(s.substring(i+1, j+1) + ' ');
+            while(i >= 0 && s.charAt(i) == ' '){
+                i--;
+            }
+            j = i;
+        }
+        return res.toString().trim();
+    }
+}
+时间复杂度 O(N) ： 其中 N 为字符串 s 的长度，线性遍历字符串。
+空间复杂度 O(N) ： 新建的 list(Python) 或 StringBuilder(Java) 中的字符串总长度 \leq N≤N ，占用 O(N) 大小的额外空间。
