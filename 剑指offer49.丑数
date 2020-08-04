@@ -1,0 +1,25 @@
+class Solution {
+    public int nthUglyNumber(int n) {
+        int a = 0, b = 0, c = 0;
+        int[] dp = new int[n];
+        dp[0] = 1;
+        for(int i = 1; i < n; i++){
+            int na = 2 * dp[a];
+            int nb = 3 * dp[b];
+            int nc = 5 * dp[c];
+            dp[i] = Math.min(Math.min(na, nb), nc);
+            if(dp[i] == na){
+                a++;
+            }
+            if(dp[i] == nb){
+                b++;
+            }
+            if(dp[i] == nc){
+                c++;
+            }
+        }
+        return dp[n - 1];
+    }
+}
+时间复杂度 O(N) ： 其中 N=n ，动态规划需遍历计算 dp 列表。
+空间复杂度 O(N) ： 长度为 N 的 dp 列表使用 O(N) 的额外空间
