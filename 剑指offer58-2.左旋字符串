@@ -1,0 +1,11 @@
+class Solution {
+    public String reverseLeftWords(String s, int n) {
+        String res = "";
+        for(int i = n; i < n + s.length(); i++){
+            res = res + s.charAt(i % s.length());
+        }
+        return res;
+    }
+}
+时间复杂度 O(N) ： 线性遍历 s 并添加，使用线性时间；
+空间复杂度 O(N) ： 假设循环过程中内存会被及时回收，内存中至少同时存在长度为 N 和 N−1 的两个字符串（新建长度为 N 的 res 需要使用前一个长度 N-1 的 res)，因此至少使用 O(N) 的额外空间。
