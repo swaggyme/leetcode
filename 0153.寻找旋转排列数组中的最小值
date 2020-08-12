@@ -1,0 +1,47 @@
+class Solution {
+    public int findMin(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+        int l = 0;
+        int r = nums.length -1;
+        
+        if(nums[0] < nums[r]){
+            return nums[0];
+        }
+        while(l <= r){
+            int m = l + (r - l) / 2;
+            if(nums[m] > nums[m+1]){
+                return nums[m+1];
+            }
+            if(nums[m-1] > nums[m]){
+                return nums[m];
+            }
+            if(nums[0] > nums[m]){
+                r = m - 1;
+            }else{
+                l = m + 1;
+            }
+
+        }
+        return -1;
+    }
+}
+o(logN);
+o(1);
+
+class Solution {
+    public int findMin(int[] nums) {
+        int l = 0;
+        int r = nums.length - 1;
+        while(l < r){
+            int m = (l + r) / 2;
+            if(nums[m] > nums[r]){
+                l = m + 1;
+            }else{
+                r = m;
+            }
+        }
+        return nums[l];
+    }
+}
