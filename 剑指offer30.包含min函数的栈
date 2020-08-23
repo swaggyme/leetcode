@@ -1,0 +1,41 @@
+class MinStack {
+    Stack<Integer> A, B;
+    /** initialize your data structure here. */
+    public MinStack() {
+        A = new Stack<>();
+        B = new Stack<>();
+    }
+    
+    public void push(int x) {
+        A.add(x);
+        if(B.empty() || B.peak() >= x)
+            B.add(x);
+    }
+    
+    public void pop() {
+        if(A.pop().equals(B.peek()))
+            B.pop();
+    }
+    
+    public int top() {
+        return A.peek();
+    }
+    
+    public int min() {
+        return B.peek();
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.min();
+ */
+ 
+ 
+ 时间复杂度 O(1) ： push(), pop(), top(), min() 四个函数的时间复杂度均为常数级别。
+空间复杂度 O(N) ： 当共有 N 个待入栈元素时，辅助栈 B 最差情况下存储 N 个元素，使用 O(N) 额外空间。
+ 
