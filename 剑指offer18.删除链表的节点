@@ -1,0 +1,30 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode deleteNode(ListNode head, int val) {
+        if(head == null){
+            return null;
+        }
+        if(head.val == val){
+            return head.next;
+        }
+        ListNode cur = head;
+        while(cur.next != null && cur.next.val != val){
+            cur = cur.next;
+        }
+        if(cur.next != null){
+            cur.next = cur.next.next;
+        }
+        return head;
+    }
+}
+
+
+时间复杂度 O(N) ： N 为链表长度，删除操作平均需循环 N/2 次，最差 N 次。
+空间复杂度 O(1) ： cur 占用常数大小额外空间。
