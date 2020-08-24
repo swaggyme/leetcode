@@ -1,0 +1,16 @@
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        Stack<Integer> s = new Stack<>();
+        int root = Integer.MAX_VALUE;
+        for(int i = postorder.length - 1; i >= 0; i--){
+            if(postorder[i] > root){
+                return false;
+            }
+            while(!s.isEmpty() && postorder[i] < s.peek()){
+                root = s.pop();
+            }
+            s.add(postorder[i]);
+        }
+        return true;
+    }
+}
