@@ -8,7 +8,7 @@ class MinStack {
     
     public void push(int x) {
         A.add(x);
-        if(B.empty() || B.peak() >= x)
+        if(B.empty() || B.peek() >= x)
             B.add(x);
     }
     
